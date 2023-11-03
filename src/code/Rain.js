@@ -1,7 +1,31 @@
 /**
+ * Rainyday {
+ * imgSoure: null
+ * img: string
+ * bkStyle:
+ * options: Options
+ * imgDownscaled:
+ * customDrop:
+ * drops: []
+ * canvas:
+ * reflection:
+ * trail:
+ * gravity:
+ * collision:
+ * }
+ */
+
+/**
  * Defines a new instance of the rainyday.js.
  * @param options options element with script parameters
+ * options {
+ * image: string
+ * canvas:
+ *
+ * }
  */
+
+import { defaults } from './RainyDay';
 
 function RainyDay(options) {
   if (this === window) {
@@ -63,31 +87,6 @@ RainyDay.prototype.initialize = function (options) {
   var parentOffset = window.getOffset(sourceParent);
 
   this.imgDownscaled = this.customDrop || downscaleImage(this.img, 50);
-  if (options.sound) {
-    playSound(options.sound);
-  }
-
-  var defaults = {
-    opacity: 1,
-    blur: 10,
-    crop: [0, 0, this.img.naturalWidth, this.img.naturalHeight],
-    enableSizeChange: true,
-    parentElement: sourceParent,
-    fps: 24,
-    fillStyle: '#8ED6FF',
-    enableCollisions: true,
-    gravityThreshold: 3,
-    gravityAngle: Math.PI / 2,
-    gravityAngleVariance: 0,
-    reflectionScaledownFactor: 5,
-    reflectionDropMappingWidth: 200,
-    reflectionDropMappingHeight: 200,
-    width: sourceParent.clientWidth,
-    height: sourceParent.clientHeight,
-    position: 'absolute',
-    top: parentOffset.top + 'px',
-    left: parentOffset.left + 'px',
-  };
 
   // add the defaults to options
   for (var option in defaults) {
@@ -1315,15 +1314,4 @@ function downscaleImage(img, width) {
   cv.height = (cv.width * img.height) / img.width;
   ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, cv.width, cv.height);
   return cv;
-}
-
-/**
- * Play sound loop
- */
-
-function playSound(url) {
-  var audio = new Audio(url);
-  audio.loop = true;
-  audio.volume = 0.25;
-  audio.play();
 }
