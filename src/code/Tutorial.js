@@ -8,19 +8,28 @@ export const CanvasTutorial = () => {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
 
-      // smiley face
+      // stickman
       ctx.beginPath();
-      // outer circle
-      ctx.arc(75, 75, 50, 0, Math.PI * 2, true);
+      // head
+      ctx.arc(75, 75, 25, 0, Math.PI * 2, true);
       ctx.moveTo(110, 75);
-      // mouth
+      // hands
       ctx.arc(75, 75, 35, 0, Math.PI, false);
-      ctx.moveTo(65, 65);
-      // left eye
-      ctx.arc(60, 65, 5, 0, Math.PI * 2, true);
-      ctx.moveTo(95, 65);
-      // right eye
-      ctx.arc(90, 65, 5, 0, Math.PI * 2, true);
+      ctx.moveTo(75, 100);
+      // body
+      ctx.lineTo(75, 130);
+      ctx.moveTo(75, 130);
+      // left leg
+      ctx.lineTo(60, 180);
+      ctx.moveTo(75, 130);
+      // right leg
+      ctx.lineTo(90, 180);
+      ctx.moveTo(68, 74);
+      ctx.arc(65, 74, 3, 0, Math.PI * 2, true);
+      ctx.moveTo(85, 74);
+      ctx.arc(82, 74, 3, 0, Math.PI * 2, true);
+      ctx.moveTo(81, 80);
+      ctx.arc(75, 80, 6, 0, Math.PI, false);
       ctx.stroke();
     }
   }
@@ -29,5 +38,5 @@ export const CanvasTutorial = () => {
     draw();
   }, []);
 
-  return <canvas height='150px' width='150px' ref={canvasRef}></canvas>;
+  return <canvas height='300px' width='150px' ref={canvasRef}></canvas>;
 };
