@@ -8,29 +8,25 @@ export const CanvasTutorial = () => {
       const canvas = canvasRef.current;
       const ctx = canvas.getContext('2d');
 
-      // stickman
-      ctx.beginPath();
-      // head
-      ctx.arc(75, 75, 25, 0, Math.PI * 2, true);
-      ctx.moveTo(110, 75);
-      // hands
-      ctx.arc(75, 75, 35, 0, Math.PI, false);
-      ctx.moveTo(75, 100);
-      // body
-      ctx.lineTo(75, 130);
-      ctx.moveTo(75, 130);
-      // left leg
-      ctx.lineTo(60, 180);
-      ctx.moveTo(75, 130);
-      // right leg
-      ctx.lineTo(90, 180);
-      ctx.moveTo(68, 74);
-      ctx.arc(65, 74, 3, 0, Math.PI * 2, true);
-      ctx.moveTo(85, 74);
-      ctx.arc(82, 74, 3, 0, Math.PI * 2, true);
-      ctx.moveTo(81, 80);
-      ctx.arc(75, 80, 6, 0, Math.PI, false);
-      ctx.stroke();
+      for (let i = 0; i <= 3; i++) {
+        for (let j = 0; j <= 2; j++) {
+          ctx.beginPath();
+          let x = 25 + j * 50; // x coordinate
+          let y = 25 + i * 50; // y coordinate
+          let radius = 20; // Arc radius
+          let startAngle = 0; // Starting point on circle
+          let endAngle = Math.PI + (Math.PI * j) / 2; // End point on circle
+          let counterclockwise = i % 2 === 1; // Draw counterclockwise
+
+          ctx.arc(x, y, radius, startAngle, endAngle, counterclockwise);
+
+          if (i > 1) {
+            ctx.fill();
+          } else {
+            ctx.stroke();
+          }
+        }
+      }
     }
   }
 
